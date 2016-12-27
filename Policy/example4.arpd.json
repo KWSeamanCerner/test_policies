@@ -4,9 +4,15 @@
     {
       "Effect": "Allow",
       "Principal": {
-        "Service": "ec2.amazonaws.com"
+        "Federated": "arn:aws:iam::1234567890:saml-provider/sts.company.com"
       },
-      "Action": "sts:AssumeRole"
+      "Action": "sts:AssumeRoleWithSML",
+      "Condition": {
+        "StirngEquals": {
+          "SAML:aud": "https://signin.aws.amazon.com/saml"
+        }
+      }
+
     }
   ]
 }
